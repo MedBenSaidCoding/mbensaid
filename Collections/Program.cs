@@ -16,15 +16,32 @@ class Program
         Console.WriteLine("Initial Scores:");
         DisplayScores(scoresList);
 
-        // 4. Find and display the highest score
-        int highestScore = FindHighestScore(scoresList);
-        Console.WriteLine($"\nHighest Score: {highestScore}");
+        // 4. Remove a specific score
+        int scoreToRemove = 88;
+        RemoveScore(scoresList, scoreToRemove);
+        Console.WriteLine($"\nScores after removing {scoreToRemove}:");
+        DisplayScores(scoresList);
 
-        // 5. Filter and display scores above a certain threshold
-        int threshold = 90;
-        List<int> highScores = FilterHighScores(scoresList, threshold);
-        Console.WriteLine($"\nScores above {threshold}:");
-        DisplayScores(highScores);
+        // 5. Remove a score at a specific index
+        int indexToRemove = 1;
+        RemoveScoreAt(scoresList, indexToRemove);
+        Console.WriteLine($"\nScores after removing at index {indexToRemove}:");
+        DisplayScores(scoresList);
+
+        // 6. Clear all scores
+        ClearScores(scoresList);
+        Console.WriteLine("\nScores after clearing:");
+        DisplayScores(scoresList);
+
+        // 7. Add new scores after clearing
+        AddScores(scoresList, 70, 85, 92);
+        Console.WriteLine("\nNew Scores:");
+        DisplayScores(scoresList);
+
+        // 8. Sort scores in ascending order
+        SortScores(scoresList);
+        Console.WriteLine("\nScores after sorting:");
+        DisplayScores(scoresList);
     }
 
     // Add scores to the list
@@ -42,15 +59,30 @@ class Program
         }
     }
 
-    // Find the highest score in the list
-    static int FindHighestScore(List<int> scores)
+    // Remove a specific score from the list
+    static void RemoveScore(List<int> scores, int scoreToRemove)
     {
-        return scores.Count > 0 ? scores.Max() : 0;
+        scores.Remove(scoreToRemove);
     }
 
-    // Filter scores above a certain threshold
-    static List<int> FilterHighScores(List<int> scores, int threshold)
+    // Remove a score at a specific index from the list
+    static void RemoveScoreAt(List<int> scores, int index)
     {
-        return scores.Where(s => s > threshold).ToList();
+        if (index >= 0 && index < scores.Count)
+        {
+            scores.RemoveAt(index);
+        }
+    }
+
+    // Clear all scores from the list
+    static void ClearScores(List<int> scores)
+    {
+        scores.Clear();
+    }
+
+    // Sort scores in ascending order
+    static void SortScores(List<int> scores)
+    {
+        scores.Sort();
     }
 }
